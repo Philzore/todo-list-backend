@@ -32,6 +32,6 @@ class TodoItemView(APIView):
         """
         Return a list of all users.
         """
-        todos = TodoItem.objects.all()
+        todos = TodoItem.objects.filter(author=request.user)
         serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data)
